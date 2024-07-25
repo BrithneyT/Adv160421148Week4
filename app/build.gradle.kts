@@ -2,11 +2,17 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.example.advweek4160421148"
     compileSdk = 34
+
+    buildFeatures {
+        dataBinding = true
+    }
+
 
     defaultConfig {
         applicationId = "com.example.advweek4160421148"
@@ -35,21 +41,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
-    }
 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    
     buildFeatures {
         compose = true
         viewBinding = true
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
 
 }
@@ -67,5 +66,10 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("com.google.android.material:material:1.11.0-alpha03")
+
+    implementation ("androidx.compose.runtime:runtime:1.0.0")
+
+    implementation ("com.squareup.picasso:picasso:2.71828")
+
 
 }

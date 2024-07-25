@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.advweek4160421148.R
 import com.example.advweek4160421148.databinding.FragmentStudentListBinding
 import com.example.advweek4160421148.viewmodel.ListViewModel
 
@@ -42,5 +41,24 @@ class StudentListFragment : Fragment() {
         viewModel.studentsLD.observe(viewLifecycleOwner, Observer {
             studentListAdapter.updateStudentList(it)
         })
+
+        viewModel.studentLoadErrorLD.observe(viewLifecycleOwner, Observer {
+            if(it == true) {
+                binding.txtError?.visibility = View.VISIBLE
+            } else {
+                binding.txtError?.visibility = View.GONE
+            }
+        })
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+            if(it == true) {
+                binding.recView.visibility = View.GONE
+                binding.progressLoad.visibility = View.VISIBLE
+            } else {
+                binding.recView.visibility = View.VISIBLE
+                binding.progressLoad.visibility = View.GONE
+            }
+        })
+
     }
+
 }
